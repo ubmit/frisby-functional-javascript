@@ -16,8 +16,11 @@ const Right = x => ({
   inspect: () => `Right(${x})`
 });
 
+const fromNullable = x => (x != null ? Right(x) : Left(null));
+
 module.exports = {
   Box,
   Left,
-  Right
+  Right,
+  fromNullable
 };
