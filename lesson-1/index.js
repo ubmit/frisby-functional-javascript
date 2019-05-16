@@ -19,9 +19,9 @@ const { Box } = require("../utils");
 
 const nextCharForNumberString = str =>
   Box(str)
-    .chain(s => s.trim())
-    .chain(s => parseInt(s))
-    .chain(n => n + 1)
+    .map(s => s.trim())
+    .map(s => parseInt(s))
+    .map(n => n + 1)
     .fold(n => String.fromCharCode(n));
 
 const result = nextCharForNumberString(" 64 ");
