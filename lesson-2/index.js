@@ -1,4 +1,4 @@
-const Box = require("../utils/box");
+const { Box } = require("../utils");
 
 const moneyToFloat = str =>
   Box(str)
@@ -18,4 +18,4 @@ const applyDiscount = (price, discount) =>
   );
 
 const finalPrice = applyDiscount("$5.00", "%20");
-console.log(finalPrice);
+console.log(finalPrice); // 4

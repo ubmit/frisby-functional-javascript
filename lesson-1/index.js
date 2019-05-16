@@ -1,4 +1,4 @@
-const Box = require("../utils/box");
+const { Box } = require("../utils");
 
 // const nextCharForNumberString = str => {
 //   const trimmed = str.trim();
@@ -25,4 +25,4 @@ const nextCharForNumberString = str =>
     .fold(n => String.fromCharCode(n));
 
 const result = nextCharForNumberString(" 64 ");
-console.log(result);
+console.log(result); // A
