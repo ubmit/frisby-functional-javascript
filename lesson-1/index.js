@@ -1,3 +1,5 @@
+const Box = require("../utils/box");
+
 // const nextCharForNumberString = str => {
 //   const trimmed = str.trim();
 //   const number = parseInt(trimmed);
@@ -14,12 +16,6 @@
 //     .map(trimmedString => parseInt(trimmedString))
 //     .map(n => n + 1)
 //     .map(nextNumber => String.fromCharCode(nextNumber));
-
-const Box = x => ({
-  chain: f => Box(f(x)),
-  fold: f => f(x),
-  inspect: () => `Box(${x})`
-});
 
 const nextCharForNumberString = str =>
   Box(str)
