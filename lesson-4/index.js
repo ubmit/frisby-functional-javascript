@@ -1,8 +1,4 @@
-const { Left, Right, fromNullable } = require("../utils");
-const fs = require("fs");
-const path = require("path");
-
-const pathToJson = path.resolve(__dirname, "./config.json");
+const { tryCatch, readFileSync } = require("../utils");
 
 // const getPort = () => {
 //   try {
@@ -14,16 +10,8 @@ const pathToJson = path.resolve(__dirname, "./config.json");
 //   }
 // };
 
-const tryCatch = f => {
-  try {
-    return Right(f());
-  } catch (e) {
-    return Left(e);
-  }
-};
-
 const getPort = () =>
-  tryCatch(() => fs.readFileSync(pathToJson))
+  tryCatch(() => readFileSync("./config.json"))
     .chain(c => tryCatch(() => JSON.parse(c)))
     .fold(e => 3000, c => c.port);
 

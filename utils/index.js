@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 const Box = x => ({
   map: f => Box(f(x)),
   fold: f => f(x),
@@ -20,9 +23,25 @@ const Right = x => ({
 
 const fromNullable = x => (x == null ? Left(null) : Right(x));
 
+const tryCatch = f => {
+  try {
+    return Right(f());
+  } catch (e) {
+    return Left(e);
+  }
+};
+
+const readFileSync = filePath =>
+  tryCatch(() => path.resolve(__dirname, filePath)).fold(
+    e => e,
+    p => fs.readFileSync(p)
+  );
+
 module.exports = {
   Box,
   Left,
   Right,
-  fromNullable
+  fromNullable,
+  tryCatch,
+  readFileSync
 };
