@@ -7,6 +7,12 @@ const Box = x => ({
   inspect: () => `Box(${x})`
 });
 
+const LazyBox = g => ({
+  fold: f => f(g()),
+  map: f => LazyBox(() => f(g())),
+  inspect: () => `LazyBox(${g})`
+});
+
 const Left = x => ({
   chain: f => Left(x),
   map: f => Left(x),
@@ -57,6 +63,7 @@ const First = x => ({
 
 module.exports = {
   Box,
+  LazyBox,
   Left,
   Right,
   fromNullable,
