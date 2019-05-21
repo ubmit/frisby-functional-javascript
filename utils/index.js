@@ -37,11 +37,32 @@ const readFileSync = filePath =>
     p => fs.readFileSync(p)
   );
 
+const Sum = x => ({
+  x,
+  concat: ({ x: y }) => Sum(x + y),
+  inspect: () => `Sum(${x})`
+});
+
+const All = x => ({
+  x,
+  concat: ({ x: y }) => All(x && y),
+  inspect: () => `All(${x})`
+});
+
+const First = x => ({
+  x,
+  concat: _ => First(x),
+  inspect: () => `First(${x})`
+});
+
 module.exports = {
   Box,
   Left,
   Right,
   fromNullable,
   tryCatch,
-  readFileSync
+  readFileSync,
+  Sum,
+  All,
+  First
 };
