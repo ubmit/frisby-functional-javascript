@@ -1,0 +1,12 @@
+{
+  "name": "frisby-functional-javascript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:guilhermedeandrade/frisby-functional-javascript.git",
+  "author": "Guilherme de Andrade <guilhermedeandrade@me.com>",
+  "license": "MIT",
+  "dependencies": {
+    "immutable": "^4.0.0-rc.12",
+    "immutable-ext": "^1.1.5"
+  }
+}
