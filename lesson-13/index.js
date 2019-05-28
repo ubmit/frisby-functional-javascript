@@ -1,9 +1,10 @@
-const { of, rejected, task } = require("folktale/concurrency/task");
+const { task } = require("folktale/concurrency/task");
 const fs = require("fs");
+const path = require("path");
 
 const readFile = (filename, enc) =>
   task(({ reject, resolve }) => {
-    fs.readFile(filename, enc, (err, contents) =>
+    fs.readFile(path.join(__dirname, filename), enc, (err, contents) =>
       err ? reject(err) : resolve(contents)
     );
   });
@@ -32,7 +33,9 @@ const app = () =>
     .map(contents => contents.replace(/8/g, "7"))
     .chain(contents => writeFile("config1.json", contents));
 
-app().run().listen({
-  onRejected: e => console.log(e),
-  onResolved: x => console.log("success")
-});
+app()
+  .run()
+  .listen({
+    onRejected: e => console.log(e),
+    onResolved: x => console.log("success")
+  });

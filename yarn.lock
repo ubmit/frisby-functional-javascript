@@ -7,6 +7,11 @@ folktale@^2.3.2:
   resolved "https://registry.yarnpkg.com/folktale/-/folktale-2.3.2.tgz#38231b039e5ef36989920cbf805bf6b227bf4fd4"
   integrity sha512-+8GbtQBwEqutP0v3uajDDoN64K2ehmHd0cjlghhxh0WpcfPzAIjPA03e1VvHlxL02FVGR0A6lwXsNQKn3H1RNQ==
 
+futurize@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/futurize/-/futurize-1.2.0.tgz#6ef93abb1b532ca45494bb96fa6c0900acabc43d"
+  integrity sha1-bvk6uxtTLKRUlLuW+mwJAKyrxD0=
+
 immutable-ext@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/immutable-ext/-/immutable-ext-1.1.5.tgz#3cdf27a067527c85817bf161a0dad1361ed579cb"
