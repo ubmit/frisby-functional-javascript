@@ -6,10 +6,12 @@
   "author": "Guilherme de Andrade <guilhermedeandrade@me.com>",
   "license": "MIT",
   "dependencies": {
+    "fantasy-identities": "^0.0.1",
     "folktale": "^2.3.2",
     "futurize": "^1.2.0",
     "immutable": "^4.0.0-rc.12",
     "immutable-ext": "^1.1.5",
-    "prettier": "^1.17.1"
+    "prettier": "^1.17.1",
+    "request": "^2.88.0"
   }
 }
