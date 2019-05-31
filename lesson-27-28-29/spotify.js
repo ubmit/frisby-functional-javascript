@@ -1,44 +1,44 @@
 const request = require("request");
 const { task, of, rejected } = require("folktale/concurrency/task");
-const Maybe = require("folktale/maybe");
 const Result = require("folktale/result");
+const { authorizationHeader } = require("./keys.js");
+
+const headers = {
+  Authorization: authorizationHeader
+};
 
 const httpGet = url =>
   task(({ reject, resolve }) =>
-    request(url, (err, res, body) => (err ? reject(err) : resolve(body)))
+    request({ url, headers }, (err, res, body) =>
+      err ? reject(err) : resolve(body)
+    )
   );
 
-// const first = xs => Maybe(xs[0]);
-const first = xs => Result.fromNullable(xs[0], "deu ruim");
-
-// const maybeToTask = m => m.fold(of, rejected)
-const resultToTask = r => console.log("hey", r);
-
 const parse = str =>
-  Result.fromNullable(JSON.parse(str), "e agora jose?").getOrElse("not found");
+  Result.fromNullable(JSON.parse(str), `JSON.parse(str) returns a nullable`);
+
+const resultToTask = r =>
+  r.matchWith({
+    Ok: ({ value }) => of(value),
+    Error: ({ value }) => rejected(value)
+  });
+
+const getJSON = url =>
+  httpGet(url)
+    .map(parse)
+    .chain(resultToTask);
+
+const first = xs => Result.fromNullable(xs[0], "xs[0] returns a nullable");
 
 const findArtist = name =>
-  httpGet(`https://api.spotify.com/v1/search?1=${name}&type=artist`)
+  getJSON(`https://api.spotify.com/v1/search?q=${name}&type=artist`)
     .map(result => result.artists.items)
     .map(first)
     .chain(resultToTask);
 
 const relatedArtists = artistId =>
-  httpGet(
-    `https://api.spotify.com/v1/artists/${artistId}/related-artists`
-  ).chain(resultToTask);
-
-const foo = httpGet("https://jsonplaceholder.typicode.com/users")
-  .map(parse)
-  .map(first)
-  .map(resultToTask);
-
-const boom = taskName =>
-  taskName.run().listen({
-    onRejected: console.error,
-    onResolved: console.log
-  });
-
-boom(foo);
+  getJSON(`https://api.spotify.com/v1/artists/${artistId}/related-artists`).map(
+    result => result.artists
+  );
 
 module.exports = { findArtist, relatedArtists };
