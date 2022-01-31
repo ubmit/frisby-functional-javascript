@@ -16,8 +16,8 @@
 👤 **Guilherme de Andrade**
 
 * Twitter: [@ubmit](https://twitter.com/ubmit)
-* Github: [@guilhermedeandrade](https://github.com/guilhermedeandrade)
-* LinkedIn: [@andradedeguilherme](https://linkedin.com/in/andradedeguilherme)
+* Github: [@ubmit](https://github.com/ubmit)
+* LinkedIn: [@ubmit](https://linkedin.com/in/ubmit)
 
 ## Show your support
 
